@@ -7,7 +7,7 @@
 
 }
 
-/* Editing in Navigation  */
+/*  -------------------  styling in Navigation -------------------    */
 
 nav{
     background-color: #000000;
@@ -25,3 +25,29 @@ nav{
 nav ul{
  list-style: none;
 }
+
+
+/* -------------------  styling in Game Container  -------------------  */
+
+.gameContainer{
+    border: 1px solid red;
+    background-color: aquamarine;
+    display: flex;
+    justify-content: center;
+    margin-top: 65px;
+}
+
+/* -------------------  Styling in Left-Container  -------------------  */
+
+.container{
+    border: 2px solid black;
+}
+
+/*  -------------------  styling in Box -------------------  */
+
+
+.box{
+    border: 2px solid purple;
+}
+
+/*  -------------------  styling in Box-Span ------------------- */
