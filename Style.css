@@ -10,9 +10,15 @@
 /* Editing in Navigation  */
 
 nav{
-    background-color: aqua;
-    color: crimson;
-    height: 75px;
+    background-color: #000000;
+    color: #fffdfd;
+    height: 63px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 14px;
+    box-sizing: border-box;
+    font-size: 20px;
 
 }
 
