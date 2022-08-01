@@ -1,0 +1,21 @@
+/* Reset Css */
+
+*{
+    margin: 0px;
+    padding: 0px;
+
+
+}
+
+/* Editing in Navigation  */
+
+nav{
+    background-color: aqua;
+    color: crimson;
+    height: 75px;
+
+}
+
+nav ul{
+ list-style: none;
+}
