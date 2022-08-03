@@ -1,5 +1,6 @@
 /* Reset Css */
 
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Da+2&family=Roboto:wght@100&display=swap');
 *{
     margin: 0px;
     padding: 0px;
@@ -12,13 +13,13 @@
 nav{
     background-color: #000000;
     color: #fffdfd;
-    height: 63px;
+    height: 4rem;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    padding: 14px;
+    padding: 1rem;
     box-sizing: border-box;
-    font-size: 20px;
+    font-size: 1.3rem;
 
 }
 
@@ -30,24 +31,77 @@ nav ul{
 /* -------------------  styling in Game Container  -------------------  */
 
 .gameContainer{
-    border: 1px solid red;
-    background-color: aquamarine;
+    /* border: 1px solid red;
+    background-color: aquamarine; */
     display: flex;
     justify-content: center;
     margin-top: 65px;
+    gap: 60px;
 }
 
-/* -------------------  Styling in Left-Container  -------------------  */
+/* -------------------  Styling in Left-Container  : Main 3 X 3 Grid -------------------  */
 
 .container{
-    border: 2px solid black;
+    /* border: 2px solid black; */
+    display: grid;
+
+    grid-template-columns: repeat(3,10vw);
+    grid-template-rows: repeat(3,10vw);
+
+    font-family: 'Roboto', sans-serif;
 }
 
 /*  -------------------  styling in Box -------------------  */
 
 
 .box{
-    border: 2px solid purple;
+    border: 1px solid rgb(0, 0, 0);
+    font-size: 8vw;
+    /* text-align: center; */
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box:hover{
+   background-color: rgba(219, 226, 218, 0.664);
 }
 
 /*  -------------------  styling in Box-Span ------------------- */
+
+
+/*  -------------------  styling in Right-Container : Info of game ------------------- */
+
+.gameInfo{
+
+    border: 1px solid black;
+    font-family: 'Baloo Da 2';
+
+}
+
+
+/*  -------------------  styling in Image Box ------------------- */
+
+.imgBox img{
+    display: none;
+}
+
+/* -----------------------------------  Utility classes  ----------------------------------- */
+
+.br-0{
+    border-right: 0;
+}
+
+.bl-0{
+    border-left: 0;
+}
+
+.bt-0{
+    border-top: 0;
+}
+
+.bb-0{
+    border-bottom: 0;
+}
