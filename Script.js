@@ -7,11 +7,13 @@ let audio_Music = new Audio("./External/music.mp3");
 let audio_ting = new Audio("./External/ting.mp3");
 let audio_gameover = new Audio("./External/gameover.mp3");
 
-let Player=document.getElementById('playername');
+let Player = document.getElementById('playername');
 let Turn = document.getElementById('playername').innerText;
 let isGameOver = false;
 
-let Reset=document.getElementById('reset');
+let Reset = document.getElementById('reset');
+
+let win=false;
 
 
 // console.log(document.getElementById('playername').innerText);
@@ -21,8 +23,7 @@ let Reset=document.getElementById('reset');
 
 // Change Turn Function //
 
-const ChangeTurn = () => 
-{
+const ChangeTurn = () => {
     return Turn === "X" ? "0" : "X";
     // condition ? true : false
 
@@ -40,7 +41,7 @@ const ChangeTurn = () =>
 //   6 | 7 | 8 
 // -----------
 
-const checkWin = () => {
+const checkWin = (t_Turn) => {
 
     let boxtext = document.getElementsByClassName('boxtext');
     // total 9 Box text : [0,...,8]
@@ -65,8 +66,27 @@ const checkWin = () => {
 
         // Comparing all textbox with index Number
 
-        if ((boxtext[E[0]].innerText === boxtext[E[1]].innerText) && (boxtext[E[1]].innerText === boxtext[E[2]].innerText) && (boxtext[E[0]].innerText != '')) {
-            document.getElementById("Info").innerText = `${boxtext[E[1]].innerText} is Won `;
+        if ((boxtext[E[0]].innerText === boxtext[E[1]].innerText) && (boxtext[E[1]].innerText === boxtext[E[2]].innerText) && (boxtext[E[0]].innerText != '')) 
+        {
+            if (t_Turn=="X") 
+            {
+                document.getElementById("Info").style.color="red";
+                t_Turn="0";
+            }
+            
+            else
+            {
+                document.getElementById("Info").style.color="blue";
+                t_Turn="X";
+
+            }
+
+            document.getElementById("Info").innerText = `${t_Turn} `;
+
+            Player.style.color="black";
+            Player.innerText="is Won";
+
+            win=true;
 
             isGameOver = true;
 
@@ -108,28 +128,28 @@ Array.from(Boxes).forEach(element => {
 
     element.addEventListener('click', () => {
 
-        isGameOver=false;
+        isGameOver = false;
+        win=false;
 
-        if (boxtext.innerText === '')
-         {
+        if (boxtext.innerText === '') {
             boxtext.innerText = Turn;
 
-             Turn=ChangeTurn();
-            
-             // Change colour of turn //
+            Turn = ChangeTurn();
 
-             if (Turn=="X") {
-                 Player.style.color = "blue";
-             }
+            // Change colour of turn //
 
-             if(Turn=="0"){            // It is a Zero                          
-                 Player.style.color = "red";
-             }
+            if (Turn == "X") {
+                Player.style.color = "blue";
+            }
 
-             audio_ting.play();
-             
-             checkWin();
-             
+            if (Turn == "0") {            // It is a Zero                          
+                Player.style.color = "red";
+            }
+
+            audio_ting.play();
+
+            checkWin(Turn);
+
 
             if (isGameOver != true) // work till game is Not Over
             {
@@ -139,33 +159,45 @@ Array.from(Boxes).forEach(element => {
         }
 
 
-        
-        
-        
+
+
+
     });
-    
+
 });
 
 // Add onclickListener to reset button
 
-Reset.addEventListener('click',()=>{
+Reset.addEventListener('click', () => {
 
     let boxtext = document.querySelectorAll('.boxtext');
 
-    Array.from(boxtext).forEach((element)=>{
+    Array.from(boxtext).forEach((element) => {
 
-         element.innerText="";
+        element.innerText = "";
 
     });
-
-    Player.innerText="X";
-    Turn = document.getElementById('playername').innerText;
+    
+    
+    Player.innerText = "X";
+    
+    if(win==true)
+    {
+        document.getElementById("Info").innerText = `Turn For `;
+        document.querySelector('.imgBox').getElementsByTagName('img')[0].style.width = '0px';      
+        document.getElementById("Info").style.color="black";  
+    }
+    
+    
+    Turn = Player.innerText;
+    
     Player.style.color = "blue";
     
+    isGameOver = true;
+    
+    // console.log('--> ' + Turn);
+    // document.getElementById("playername").innerText = `${Turn}`;
     // console.log('--> 1 : ' + Turn);
-
-    isGameOver=true;
-    document.getElementById("playername").innerText = `${Turn}`;
 
 });
 
