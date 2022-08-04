@@ -11,10 +11,12 @@ let Player=document.getElementById('playername');
 let Turn = document.getElementById('playername').innerText;
 let isGameOver = false;
 
+let Reset=document.getElementById('reset');
 
-console.log(document.getElementById('playername').innerText);
-console.log(document.getElementById('playername').innerHTML);
-console.log(Turn);
+
+// console.log(document.getElementById('playername').innerText);
+// console.log(document.getElementById('playername').innerHTML);
+// console.log(Turn);
 
 
 // Change Turn Function //
@@ -99,35 +101,35 @@ let Boxes = document.getElementsByClassName("box");
 Array.from(Boxes).forEach(element => {
 
     let boxtext = element.querySelector('.boxtext');
-    // select Boxtext class of particulat element //
+    // select Boxtext class of particulat element (Select Only One at a time )//
 
 
     //   --- Adding an Event Listener  to box (Element) --- //
 
     element.addEventListener('click', () => {
 
+        isGameOver=false;
+
         if (boxtext.innerText === '')
          {
             boxtext.innerText = Turn;
 
              Turn=ChangeTurn();
+            
+             // Change colour of turn //
 
+             if (Turn=="X") {
+                 Player.style.color = "blue";
+             }
 
-                            // Change colour of turn //
+             if(Turn=="0"){            // It is a Zero                          
+                 Player.style.color = "red";
+             }
 
-                            if (Turn=="X") {
-                                Player.style.color = "blue";
-                            }
-
-                            else {
-                                Player.style.color = "red";
-                            }
-
-
-            audio_ting.play();
-
-            checkWin();
-
+             audio_ting.play();
+             
+             checkWin();
+             
 
             if (isGameOver != true) // work till game is Not Over
             {
@@ -142,5 +144,28 @@ Array.from(Boxes).forEach(element => {
         
     });
     
+});
+
+// Add onclickListener to reset button
+
+Reset.addEventListener('click',()=>{
+
+    let boxtext = document.querySelectorAll('.boxtext');
+
+    Array.from(boxtext).forEach((element)=>{
+
+         element.innerText="";
+
+    });
+
+    Player.innerText="X";
+    Turn = document.getElementById('playername').innerText;
+    Player.style.color = "blue";
+    
+    // console.log('--> 1 : ' + Turn);
+
+    isGameOver=true;
+    document.getElementById("playername").innerText = `${Turn}`;
+
 });
 
