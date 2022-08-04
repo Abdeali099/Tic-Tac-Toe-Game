@@ -85,7 +85,9 @@ nav ul{
 /*  -------------------  styling in Image Box ------------------- */
 
 .imgBox img{
-    display: none;
+    /* display: none; */
+    width: 0px;
+    transition: width ease-in-out;
 }
 
 /* -----------------------------------  Utility classes  ----------------------------------- */

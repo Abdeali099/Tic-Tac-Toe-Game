@@ -58,6 +58,11 @@ const checkWin = () => {
             document.getElementById("Info").innerText = `${boxtext[E[1]].innerText} is Won `;
 
              isGameOver=true;
+
+            //  displaynig a gif //
+
+            document.querySelector('.imgBox').getElementsByTagName('img')[0].style.width='120px';
+
          }
 
 
@@ -69,6 +74,9 @@ const checkWin = () => {
 
 
 // ---------------- Main Game Logic ---------------------- //
+
+// audio_Music.play();
+// There is some error in playing a song.
 
 // Step 1 : Take a Refernce of all Boxes //
 
