@@ -1,6 +1,7 @@
 /* Reset Css */
 
-@import url('https://fonts.googleapis.com/css2?family=Baloo+Da+2&family=Roboto:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Da+2&family=Indie+Flower&family=Roboto:wght@100&display=swap');
+
 *{
     margin: 0px;
     padding: 0px;
@@ -69,6 +70,9 @@ nav ul{
    background-color: rgba(219, 226, 218, 0.664);
 }
 
+.boxtext{
+    font-family: 'Indie Flower', cursive;
+}
 /*  -------------------  styling in Box-Span ------------------- */
 
 
@@ -90,7 +94,22 @@ nav ul{
     color: #1809ff;
 }
 
+.Info-Player{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
 /*  -------------------  styling in Image Box ------------------- */
+
+
+.imgBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
 
 .imgBox img{
     /* display: none; */
@@ -129,7 +148,7 @@ nav ul{
     cursor: pointer;   
     
     font-family: monospace;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: bolder;
 }
 

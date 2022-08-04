@@ -24,7 +24,7 @@ let win=false;
 // Change Turn Function //
 
 const ChangeTurn = () => {
-    return Turn === "X" ? "0" : "X";
+    return Turn === "X" ? "O" : "X";
     // condition ? true : false
 
 };
@@ -71,7 +71,7 @@ const checkWin = (t_Turn) => {
             if (t_Turn=="X") 
             {
                 document.getElementById("Info").style.color="red";
-                t_Turn="0";
+                t_Turn="O";
             }
             
             else
@@ -131,8 +131,11 @@ Array.from(Boxes).forEach(element => {
         isGameOver = false;
         win=false;
 
-        if (boxtext.innerText === '') {
+        if (boxtext.innerText === '') 
+        {
             boxtext.innerText = Turn;
+
+
 
             Turn = ChangeTurn();
 
@@ -140,10 +143,13 @@ Array.from(Boxes).forEach(element => {
 
             if (Turn == "X") {
                 Player.style.color = "blue";
+                boxtext.style.color="red";
             }
-
-            if (Turn == "0") {            // It is a Zero                          
+            
+            if (Turn == "O") {            // It is a Zero                          
                 Player.style.color = "red";
+                boxtext.style.color="blue";
+
             }
 
             audio_ting.play();
