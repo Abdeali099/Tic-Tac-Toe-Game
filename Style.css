@@ -81,6 +81,14 @@ nav ul{
 
 }
 
+.Info{
+    font-size: 22px;
+    font-family: cursive;
+}
+
+#playername{
+    color: #1809ff;
+}
 
 /*  -------------------  styling in Image Box ------------------- */
 
@@ -106,4 +114,25 @@ nav ul{
 
 .bb-0{
     border-bottom: 0;
+}
+
+.btn{
+
+    background-color: aqua;
+    margin: 20px;
+    padding: 12px;
+    border-radius: 5px;
+    outline-color: #f93636;
+    border-color: aliceblue;
+    outline-style: double;
+    /* box-shadow: 7px 6px 6px 0px #f44336; */
+    cursor: pointer;   
+    
+    font-family: monospace;
+    font-size: 14px;
+    font-weight: bolder;
+}
+
+.btn:hover{
+    background-color: rgb(29 243 243);
 }
