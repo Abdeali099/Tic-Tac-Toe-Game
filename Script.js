@@ -49,14 +49,14 @@ const checkWin = (t_Turn) => {
     let Wins = [
 
         //E[0],E[1],E[2]; 
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-        [0, 4, 8],
-        [2, 4, 6]
+        [0, 1, 2, 5,5,0,1.2],
+        [3, 4, 5, 5,15,0,1.2],
+        [6, 7, 8, 5,25,0,1.2],
+        [0, 3, 6, -5,15,90,1.2],
+        [1, 4, 7, 5,15,90,1.2],
+        [2, 5, 8, 15,15,90,1.2],
+        [0, 4, 8, 5,15,45,1.2],
+        [2, 4, 6,5,15,135,1.2]
     ];
 
 
@@ -94,6 +94,13 @@ const checkWin = (t_Turn) => {
 
             document.querySelector('.imgBox').getElementsByTagName('img')[0].style.width = '120px';
 
+
+            // Drawing a Line //
+
+            document.querySelector('.Line').style.width="20vw";
+            document.querySelector('.Line').style.transform=`translate(${E[3]}vw,${E[4]}vw) rotate(${E[5]}deg) scale(${E[6]})`;
+
+            audio_gameover.play();
         }
 
 
@@ -192,6 +199,7 @@ Reset.addEventListener('click', () => {
         document.getElementById("Info").innerText = `Turn For `;
         document.querySelector('.imgBox').getElementsByTagName('img')[0].style.width = '0px';      
         document.getElementById("Info").style.color="black";  
+        document.querySelector('.Line').style.width="0vw";
     }
     
     
