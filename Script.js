@@ -88,11 +88,11 @@ const checkWin = (t_Turn) => {
 
             Boxes.disabled = true;
 
-            setTimeout(() => {
+            // setTimeout(() => {
                                             
-                window.location.reload();
+            //     window.location.reload();
 
-              }, 3000);
+            //   }, 3000);
 
 
 
@@ -125,7 +125,7 @@ Array.from(Boxes).forEach(element => {
 
     element.addEventListener('click', () => {
 
-         if(isGameOver==true && reset!=true)
+         if(isGameOver==true)
          {
             Boxes.disabled = true;
          }
@@ -173,11 +173,11 @@ Array.from(Boxes).forEach(element => {
                                         Ele_Player.innerText = "";
 
 
-                                          setTimeout(() => {
+                                        //   setTimeout(() => {
                                             
-                                            window.location.reload();
+                                        //     window.location.reload();
 
-                                          }, 2000);
+                                        //   }, 2000);
                                       }
          } // else close       
 
@@ -210,7 +210,7 @@ Reset.addEventListener('click', () => {
     Turn = Ele_Player.innerText;
     Ele_Player.style.color = "blue";
 
-    isGameOver = true;
-    reset=true;
+    isGameOver = false;
+    
 });
 
