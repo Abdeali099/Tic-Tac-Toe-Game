@@ -1,45 +1,34 @@
-
-console.log("Welcome to Tic Tac Toe");
-
-// Giving Music to varible//
+// ---------------- Declaring a Varibles ---------------- //
 
 let audio_Music = new Audio("./External/music.mp3");
 let audio_ting = new Audio("./External/ting.mp3");
 let audio_gameover = new Audio("./External/gameover.mp3");
 
-let Player = document.getElementById('playername');
+let Ele_Player = document.getElementById('playername');
 let Turn = document.getElementById('playername').innerText;
-let isGameOver = false;
+
+
+let Boxes = document.getElementsByClassName("box");
 
 let Reset = document.getElementById('reset');
 
+let isGameOver = false;
 let win = false;
+let reset=false;
+
+let Count=0;
 
 
-// console.log(document.getElementById('playername').innerText);
-// console.log(document.getElementById('playername').innerHTML);
-// console.log(Turn);
 
 
-// Change Turn Function //
+// ---------------- Function : Return Whose turn is this 'X' or 'O' ---------------- //
 
 const ChangeTurn = () => {
     return Turn === "X" ? "O" : "X";
     // condition ? true : false
-
 };
 
-
-
-// Function To Check for a Win 
-
-
-//   0 | 1 | 2  
-// -----------
-//   3 | 4 | 5  
-// -----------
-//   6 | 7 | 8 
-// -----------
+// ---------------- Function : TO Check a Win Or Not.. ---------------- //
 
 const checkWin = (t_Turn) => {
 
@@ -47,11 +36,9 @@ const checkWin = (t_Turn) => {
 
     // total 9 Box text : [0,...,8]
 
-    
-    
     let Wins = [
-        
-        //E[0],E[1],E[2]; 
+
+        //  E[0],E[1],E[2]....E[6]; 
         [0, 1, 2, 5, 5, 0, 1.2],
         [3, 4, 5, 5, 15, 0, 1.2],
         [6, 7, 8, 5, 25, 0, 1.2],
@@ -61,142 +48,145 @@ const checkWin = (t_Turn) => {
         [0, 4, 8, 5, 15, 45, 1.2],
         [2, 4, 6, 5, 15, 135, 1.2]
     ];
-    
-    
+
+
     // Wins.forEach(() => {});
-    
+
     Wins.forEach((E) => {
-        
+
         // Comparing all textbox with index Number
 
         if ((boxtext[E[0]].innerText === boxtext[E[1]].innerText) && (boxtext[E[1]].innerText === boxtext[E[2]].innerText) && (boxtext[E[0]].innerText != '')) {
+            
             if (t_Turn == "X") {
-                document.getElementById("Info").style.color = "red";
-                t_Turn = "O";
+                document.getElementById("Info").style.color = "blue";              
             }
-            
+
             else {
-                document.getElementById("Info").style.color = "blue";
-                t_Turn = "X";
-
+                document.getElementById("Info").style.color = "red";
             }
 
-            document.getElementById("Info").innerText = `${t_Turn} `;
+                     document.getElementById("Info").innerText = `${t_Turn} `;
 
-            Player.style.color = "black";
-            Player.innerText = "is Won";
-            
+            Ele_Player.style.color = "black";
+            Ele_Player.innerText = "is Won";
+
             win = true;
-            
             isGameOver = true;
-            
+
             //  displaynig a gif //
-            
+
             document.querySelector('.imgBox').getElementsByTagName('img')[0].style.width = '120px';
-            
-            
+
+
             // Drawing a Line //
-            
+
             document.querySelector('.Line').style.width = "20vw";
             document.querySelector('.Line').style.transform = `translate(${E[3]}vw,${E[4]}vw) rotate(${E[5]}deg) scale(${E[6]})`;
-            
+
             audio_gameover.play();
 
-            // document.getElementsByClassName("box").style.pointerEvents = 'none';
-           
-            
+            Boxes.disabled = true;
+
             setTimeout(() => {
+                                            
                 window.location.reload();
-            }, 3000);
 
-
-        }
-
-
-    });
-
-};
+              }, 3000);
 
 
 
+        } // if close
 
-// ---------------- Main Game Logic ---------------------- //
 
-//   audio_Music.play();
-// There is some error in playing a song.
+    }); // for each is close
 
-// Step 1 : Take a Refernce of all Boxes //
+}; // function close
 
-let Boxes = document.getElementsByClassName("box");
+// ---------------- Game Logic ---------------------- //
 
-// Step 2 : Select Box Individually //
+
+
+// Step 1 : Take a Refernce of all Boxes : Refernce is already taken 'Box' //
+
+
+
+// Step 2 : Select Box Individually and Assign 'X' or 'O' accroding to Turn //
 
 // Array.from(Boxes).forEach(()=>{}); // ==> first we have convert it to array 
 
+Array.from(Boxes).forEach(element => {
+
+    let boxtext = element.querySelector('.boxtext');
+    // select Boxtext class of particulat element (Select Only One at a time )//
 
 
+    //   --- Adding an Event Listener  to Box (Element) --- //
 
-    Array.from(Boxes).forEach(element => {
+    element.addEventListener('click', () => {
 
-        // if (win===true) {
-            
-        //     Boxes.style.pointerEvents = 'none';
-        // }
+         if(isGameOver==true && reset!=true)
+         {
+            Boxes.disabled = true;
+         }
 
-        let boxtext = element.querySelector('.boxtext');
-        // select Boxtext class of particulat element (Select Only One at a time )//
-
-
-        //   --- Adding an Event Listener  to box (Element) --- //
-
-
-        element.addEventListener('click', () => {
-
-            isGameOver = false;
-            win = false;
+         else
+         {
+            reset=false;
 
             if (boxtext.innerText === '') {
-                boxtext.innerText = Turn;
-
-
-
-                Turn = ChangeTurn();
-
-                // Change colour of turn //
-
-                if (Turn == "X") {
-                    Player.style.color = "blue";
-                    boxtext.style.color = "red";
-                }
-
-                if (Turn == "O") {            // It is a Zero                          
-                    Player.style.color = "red";
-                    boxtext.style.color = "blue";
-
-                }
-
+                boxtext.innerText = Turn;  // For The First time It is a 'X' //
+    
                 audio_ting.play();
 
-                checkWin(Turn);
+                // Counting Box //
 
-
+                    Count++;
+    
+                // Change colour of turn //
+    
+                if (Turn == "X") {
+                    boxtext.style.color = "blue";
+                    Ele_Player.style.color = "red";
+                }
+                
+                else {
+                    Ele_Player.style.color = "blue";
+                    boxtext.style.color = "red";
+                }
+    
+                checkWin(Turn);  // Check If Player Won Or Not //
+    
+                Turn = ChangeTurn(); // It will change Turn btw 'X' and 'O'//
+    
+    
                 if (isGameOver != true) // work till game is Not Over
                 {
                     document.getElementById("playername").innerText = `${Turn}`;
-                }
-
+                }    
             }
 
+                                      if (Count==9 && isGameOver != true) 
+                                      {
+                                          document.getElementById("Info").style.color = `red`;
+                                        document.getElementById("Info").innerText = `Game Is Over.. `;
+                                        Ele_Player.innerText = "";
 
 
+                                          setTimeout(() => {
+                                            
+                                            window.location.reload();
+
+                                          }, 2000);
+                                      }
+         } // else close       
+
+    }); // Event Listener close
+
+}); // ForEach close
 
 
-        });
-
-    });
-
-
-// Add onclickListener to reset button
+//---------------------- Logic Of Reset Button ---------------------- //
 
 Reset.addEventListener('click', () => {
 
@@ -208,26 +198,19 @@ Reset.addEventListener('click', () => {
 
     });
 
-
-    Player.innerText = "X";
+    Ele_Player.innerText = "X";
 
     if (win == true) {
         document.getElementById("Info").innerText = `Turn For `;
-        document.querySelector('.imgBox').getElementsByTagName('img')[0].style.width = '0px';
         document.getElementById("Info").style.color = "black";
+        document.querySelector('.imgBox').getElementsByTagName('img')[0].style.width = '0px';
         document.querySelector('.Line').style.width = "0vw";
     }
 
-
-    Turn = Player.innerText;
-
-    Player.style.color = "blue";
+    Turn = Ele_Player.innerText;
+    Ele_Player.style.color = "blue";
 
     isGameOver = true;
-
-    // console.log('--> ' + Turn);
-    // document.getElementById("playername").innerText = `${Turn}`;
-    // console.log('--> 1 : ' + Turn);
-
+    reset=true;
 });
 
