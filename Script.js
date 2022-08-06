@@ -18,12 +18,13 @@ let reset=false;
 
 let Count=0;
 
-
+console.log("Main Working");
 
 
 // ---------------- Function : Return Whose turn is this 'X' or 'O' ---------------- //
 
 const ChangeTurn = () => {
+    console.log("Main Working-change Turn");
     return Turn === "X" ? "O" : "X";
     // condition ? true : false
 };
@@ -33,6 +34,9 @@ const ChangeTurn = () => {
 const checkWin = (t_Turn) => {
 
     let boxtext = document.getElementsByClassName('boxtext');
+
+    console.log("Main Working-checkwin");
+
 
     // total 9 Box text : [0,...,8]
 
@@ -57,7 +61,7 @@ const checkWin = (t_Turn) => {
         // Comparing all textbox with index Number
 
         if ((boxtext[E[0]].innerText === boxtext[E[1]].innerText) && (boxtext[E[1]].innerText === boxtext[E[2]].innerText) && (boxtext[E[0]].innerText != '')) {
-            
+           
             if (t_Turn == "X") {
                 document.getElementById("Info").style.color = "blue";              
             }
@@ -80,6 +84,8 @@ const checkWin = (t_Turn) => {
 
 
             // Drawing a Line //
+
+            console.log("Main Working-above transform");
 
             document.querySelector('.Line').style.width = "20vw";
             document.querySelector('.Line').style.transform = `translate(${E[3]}vw,${E[4]}vw) rotate(${E[5]}deg) scale(${E[6]})`;
@@ -212,5 +218,6 @@ Reset.addEventListener('click', () => {
 
     isGameOver = false;
     
+    Count=0;
 });
 
