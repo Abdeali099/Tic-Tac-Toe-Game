@@ -1,6 +1,12 @@
+// Importing a File //
+import * as Q_600px from "./Script_600px.js";
+import * as Q_550px from "./Script_550px.js";
+import * as Q_415px from "./Script_415px.js";
+import * as Q_400px from "./Script_400px.js";
+import * as Q_350px from "./Script_350px.js";
+
 // ---------------- Declaring a Varibles ---------------- //
 
-let audio_Music = new Audio("./External/music.mp3");
 let audio_ting = new Audio("./External/ting.mp3");
 let audio_gameover = new Audio("./External/gameover.mp3");
 
@@ -14,17 +20,24 @@ let Reset = document.getElementById('reset');
 
 let isGameOver = false;
 let win = false;
-let reset=false;
 
 let Count=0;
 
-console.log("Main Working");
+
+// Making a Global Variable //
+
+export let globalVariable={
+
+    Key_isGameOver:"false"
+
+}; 
+
 
 
 // ---------------- Function : Return Whose turn is this 'X' or 'O' ---------------- //
 
 const ChangeTurn = () => {
-    console.log("Main Working-change Turn");
+   
     return Turn === "X" ? "O" : "X";
     // condition ? true : false
 };
@@ -35,8 +48,7 @@ const checkWin = (t_Turn) => {
 
     let boxtext = document.getElementsByClassName('boxtext');
 
-    console.log("Main Working-checkwin");
-
+   
 
     // total 9 Box text : [0,...,8]
 
@@ -77,6 +89,9 @@ const checkWin = (t_Turn) => {
 
             win = true;
             isGameOver = true;
+            globalVariable.Key_isGameOver=true;
+
+         
 
             //  displaynig a gif //
 
@@ -85,7 +100,7 @@ const checkWin = (t_Turn) => {
 
             // Drawing a Line //
 
-            console.log("Main Working-above transform");
+          
 
             document.querySelector('.Line').style.width = "20vw";
             document.querySelector('.Line').style.transform = `translate(${E[3]}vw,${E[4]}vw) rotate(${E[5]}deg) scale(${E[6]})`;
@@ -131,15 +146,14 @@ Array.from(Boxes).forEach(element => {
 
     element.addEventListener('click', () => {
 
-         if(isGameOver==true)
+         if(globalVariable.Key_isGameOver==true)
          {
             Boxes.disabled = true;
          }
 
          else
          {
-            reset=false;
-
+          
             if (boxtext.innerText === '') {
                 boxtext.innerText = Turn;  // For The First time It is a 'X' //
     
@@ -161,18 +175,65 @@ Array.from(Boxes).forEach(element => {
                     boxtext.style.color = "red";
                 }
     
-                checkWin(Turn);  // Check If Player Won Or Not //
+                // Fire Function at a Differnt Media Queries//
+
+                if ( screen.width <= 350) {
+                    console.log("It IS 350px");
+                    Q_350px.E_checkWin(Turn);
+
+                   
+                }
+
+                else if ( screen.width >= 351 && screen.width <= 400) {
+                    console.log("It IS 351 to 400 px");
+
+                    Q_400px.D_checkWin(Turn);
+                   
+                }
+
+                else if ( screen.width >= 401 && screen.width <= 415) {
+                    console.log("It IS 401 to 415 px");
+
+                    Q_415px.C_checkWin(Turn);
+                   
+                }
+
+                else if ( screen.width >= 416 && screen.width <= 550) {
+                    console.log("It IS 416 to 550 px");
+
+                    Q_550px.B_checkWin(Turn);
+                   
+                }
+
+               else if ( screen.width >= 551 && screen.width <= 600) {
+
+                console.log("It IS 551 to 600 px");
+
+
+                    Q_600px.A_checkWin(Turn);
+                   
+                }
+
+
+                else
+                {
+
+                    console.log("It IS > 600 px");
+
+
+                    checkWin(Turn);  // Check If Player Won Or Not //
+                }
     
                 Turn = ChangeTurn(); // It will change Turn btw 'X' and 'O'//
     
     
-                if (isGameOver != true) // work till game is Not Over
+                if (globalVariable.Key_isGameOver != true) // work till game is Not Over
                 {
                     document.getElementById("playername").innerText = `${Turn}`;
                 }    
             }
 
-                                      if (Count==9 && isGameOver != true) 
+                                      if (Count==9 && globalVariable.Key_isGameOver != true) 
                                       {
                                           document.getElementById("Info").style.color = `red`;
                                         document.getElementById("Info").innerText = `Game Is Over.. `;
@@ -206,7 +267,7 @@ Reset.addEventListener('click', () => {
 
     Ele_Player.innerText = "X";
 
-    if (win == true) {
+    if ( globalVariable.Key_isGameOver == true) {
         document.getElementById("Info").innerText = `Turn For `;
         document.getElementById("Info").style.color = "black";
         document.querySelector('.imgBox').getElementsByTagName('img')[0].style.width = '0px';
@@ -216,7 +277,7 @@ Reset.addEventListener('click', () => {
     Turn = Ele_Player.innerText;
     Ele_Player.style.color = "blue";
 
-    isGameOver = false;
+    globalVariable.Key_isGameOver = false;
     
     Count=0;
 });
