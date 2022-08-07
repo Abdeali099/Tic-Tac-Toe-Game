@@ -75,7 +75,7 @@ let A_boxtext = document.getElementsByClassName('boxtext');
                                             
                window.location.reload();
 
-              }, 4000);
+              }, 2000);
 
 
 

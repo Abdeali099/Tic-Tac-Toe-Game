@@ -113,7 +113,7 @@ const checkWin = (t_Turn) => {
                                             
                 window.location.reload();
 
-              }, 3000);
+              }, 2000);
 
 
 
