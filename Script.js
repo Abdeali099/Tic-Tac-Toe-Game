@@ -109,11 +109,11 @@ const checkWin = (t_Turn) => {
 
             Boxes.disabled = true;
 
-            // setTimeout(() => {
+            setTimeout(() => {
                                             
-            //     window.location.reload();
+                window.location.reload();
 
-            //   }, 3000);
+              }, 3000);
 
 
 
@@ -178,28 +178,27 @@ Array.from(Boxes).forEach(element => {
                 // Fire Function at a Differnt Media Queries//
 
                 if ( screen.width <= 350) {
-                    console.log("It IS 350px");
+                   
                     Q_350px.E_checkWin(Turn);
 
                    
                 }
 
                 else if ( screen.width >= 351 && screen.width <= 400) {
-                    console.log("It IS 351 to 400 px");
+                   
 
                     Q_400px.D_checkWin(Turn);
                    
                 }
 
                 else if ( screen.width >= 401 && screen.width <= 415) {
-                    console.log("It IS 401 to 415 px");
-
+                  
                     Q_415px.C_checkWin(Turn);
                    
                 }
 
                 else if ( screen.width >= 416 && screen.width <= 550) {
-                    console.log("It IS 416 to 550 px");
+                  
 
                     Q_550px.B_checkWin(Turn);
                    
@@ -207,7 +206,6 @@ Array.from(Boxes).forEach(element => {
 
                else if ( screen.width >= 551 && screen.width <= 600) {
 
-                console.log("It IS 551 to 600 px");
 
 
                     Q_600px.A_checkWin(Turn);
@@ -218,8 +216,7 @@ Array.from(Boxes).forEach(element => {
                 else
                 {
 
-                    console.log("It IS > 600 px");
-
+                 
 
                     checkWin(Turn);  // Check If Player Won Or Not //
                 }
@@ -240,11 +237,11 @@ Array.from(Boxes).forEach(element => {
                                         Ele_Player.innerText = "";
 
 
-                                        //   setTimeout(() => {
+                                          setTimeout(() => {
                                             
-                                        //     window.location.reload();
+                                            window.location.reload();
 
-                                        //   }, 2000);
+                                          }, 2000);
                                       }
          } // else close       
 
@@ -267,7 +264,7 @@ Reset.addEventListener('click', () => {
 
     Ele_Player.innerText = "X";
 
-    if ( globalVariable.Key_isGameOver == true) {
+    if ( globalVariable.Key_isGameOver == true || Count==9) {
         document.getElementById("Info").innerText = `Turn For `;
         document.getElementById("Info").style.color = "black";
         document.querySelector('.imgBox').getElementsByTagName('img')[0].style.width = '0px';

@@ -71,11 +71,11 @@ let D_boxtext = document.getElementsByClassName('boxtext');
 
             D_Boxes.disabled = true;
 
-            // setTimeout(() => {
+            setTimeout(() => {
                                             
-            //    window.location.reload();
+               window.location.reload();
 
-            //   }, 4000);
+              }, 4000);
 
 
 
